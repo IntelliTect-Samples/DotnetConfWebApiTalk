@@ -11,8 +11,8 @@ public static class TodoApi
         {
             return await dbContext.Todos.AsNoTracking().ToListAsync();
         });
-
-        builder.MapGet("/api/todo/{id}", async (ApplicationDbContext dbContext, int id) =>
+        
+        builder.MapGet("/api/todo/{id}", async Task<IResult> (ApplicationDbContext dbContext, int id) =>
         {
             var todo = await dbContext.Todos.Where(t => t.Id == id).SingleOrDefaultAsync();
 
